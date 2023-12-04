@@ -1,0 +1,18 @@
+spring:
+  application.name: resilience4j-circuitbreaker
+
+server:
+  port: 8080
+
+resilience4j.retry:
+  configs:
+    default:
+      maxAttempts: 3
+      waitDuration: 1000
+      retryExceptions:
+        - me.test.resilience4j.exception.RetryException   # retryExceptions ? ??? ??? ???
+      ignoreExceptions:
+        - me.test.resilience4j.exception.IgnoreException  # retryExceptions ? ???? ?? ??? ignoreExceptions ? ???
+  instances:
+    simpleRetryConfig:
+      baseConfig: default
