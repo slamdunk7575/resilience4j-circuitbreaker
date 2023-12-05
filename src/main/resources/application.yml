@@ -63,6 +63,17 @@ management.endpoint.health.show-details: always
 management.health.diskspace.enabled: false
 management.health.circuitbreakers.enabled: true
 
+# Application 이 여러 서버에 떠있는 경우 StateTransition 에서 발생한 event 를
+# actuator 사용하여 CircuitBreaker 의 OPEN 상태를 다른 서버에 전달하여 상태 동기화
+
+# REQUEST URL: /actuator/circuitbreakers/simpleCircuitBreakerConfig
+# BODY: {"updateState": "FORCE_OPEN"}
+# FORCED_OPEN: waitDurationInOpenState 설정한 시간이 지나도 HALF_OPEN 상태로 변하지 않는 상태
+# CircuitBreaker 'simpleCircuitBreakerConfig' changed state from CLOSED to FORCED_OPEN
+
+# {"updateState": "DISABLE"} 상태
+# 상태를 DISABLE 시켜 서킷이 사용되지 않도록 만들어
+# RecordException 예외요청을 보내도 서킷이 OPEN 상태로 바뀌지 않음 -> fallback 메서드는 실행
 management:
   metrics:
     tags:
