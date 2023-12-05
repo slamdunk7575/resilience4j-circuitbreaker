@@ -32,7 +32,7 @@ resilience4j.circuitbreaker:
       slowCallDurationThreshold: 3000                           # 몇 ms 동안 요청이 처리되지 않으면 실패로 간주할 것인가?
       slowCallRateThreshold: 60                                 # slidingWindowSize 중 몇 %가 slowCall 이면 OPEN 으로 만들 것인가?
 
-      permittedNumberOfCallsInHalfOpenState: 5                  # HALF_OPEN 상태에서 5번까지는 CLOSE 로 가기위해 호출한다.
+      permittedNumberOfCallsInHalfOpenState: 5                  # HALF_OPEN 상태에서 5번까지 요청을 한뒤 failureRateThreshold 설정에 따라 OPEN 또는 CLOSE 로 바뀔지 판단한다.
       automaticTransitionFromOpenToHalfOpenEnabled: true        # OPEN 상태에서 자동으로 HALF_OPEN 으로 갈 것인가?
 
       eventConsumerBufferSize: 10                               # actuator 를 위한 이벤트 버퍼 사이즈
